@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الخير والبركة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d4f1f4 0%, #e3f2fd 50%, #f3e5f5 100%);
+            min-height: 100vh;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.75rem 0.5rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .home-hero {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .home-hero svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .home-hero h1 {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            color: #065f46;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .home-hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card.emerald { background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); color: white; }
+        .card.blue { background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); color: white; }
+        .card.purple { background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); color: white; }
+        .card.amber { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; }
+        .card.violet { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; }
+
+        .card svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        }
+
+        .counter-section {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .counter-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .counter-box {
+            background: white;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .dhikr-text {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #374151;
+            margin-bottom: 1.5rem;
+            line-height: 2;
+        }
+
+        .dhikr-text p {
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-display {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .counter-display.emerald { color: #10b981; }
+        .counter-display.blue { color: #3b82f6; }
+
+        .btn {
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 3rem);
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            width: auto;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-blue:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: #d1d5db;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #9ca3af;
+        }
+
+        .adhkar-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .adhkar-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .adhkar-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #7c3aed;
+            margin-bottom: 0.5rem;
+        }
+
+        .adhkar-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .adhkar-tab {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #374151;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .adhkar-tab.active {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+        }
+
+        .adhkar-content {
+            display: none;
+        }
+
+        .adhkar-content.active {
+            display: block;
+        }
+
+        .dhikr-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .dhikr-item.completed {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 3px solid #10b981;
+        }
+
+        .dhikr-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f3f4f6;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .dhikr-title {
+            font-size: 1rem;
+            color: #7c3aed;
+            font-weight: bold;
+        }
+
+        .dhikr-repeat {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .completed-badge {
+            background: #10b981;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .dhikr-arabic {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            line-height: 2.2;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .dhikr-counter-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #f3f4f6;
+        }
+
+        .dhikr-counter-display {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #7c3aed;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .dhikr-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .dhikr-btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dhikr-btn-count {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+        }
+
+        .dhikr-btn-count:hover {
+            transform: scale(1.05);
+        }
+
+        .dhikr-btn-reset {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .dhikr-btn-reset:hover {
+            background: #d1d5db;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .content-section h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-box {
+            background: white;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .bismillah {
+            text-align: center;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            color: #374151;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .content-box iframe {
+            width: 100%;
+            height: clamp(400px, 60vh, 600px);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.6;
+        }
+
+        footer .small {
+            color: #9ca3af;
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+        }
+
+        @media (max-width: 480px) {
+            .nav-btn {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .adhkar-tab {
+                padding: 0.6rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .dhikr-counter-section {
+                justify-content: center;
+            }
+
+            .dhikr-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('home')">الرئيسية</button>
+            <button class="nav-btn" onclick="showSection('adhkar')">أذكار الصباح والمساء</button>
+            <button class="nav-btn" onclick="showSection('istighfar')">الاستغفار</button>
+            <button class="nav-btn" onclick="showSection('tasbih')">التسبيح</button>
+            <button class="nav-btn" onclick="showSection('quran')">القرآن</button>
+            <button class="nav-btn" onclick="showSection('bukhari')">البخاري</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- الصفحة الرئيسية -->
+        <div id="home" class="section active">
+            <div class="home-hero">
+                <svg fill="currentColor" viewBox="0 0 24 24" style="color: #10b981;">
+                    <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+                </svg>
+                <h1>بوابة الخير والبركة</h1>
+                <p>وَاذْكُر رَّبَّكَ فِي نَفْسِكَ تَضَرُّعًا وَخِيفَةً</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card violet" onclick="showSection('adhkar')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <h3>أذكار الصباح والمساء</h3>
+                </div>
+
+                <div class="card emerald" onclick="showSection('istighfar')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    <h3>الاستغفار</h3>
+                </div>
+
+                <div class="card blue" onclick="showSection('tasbih')">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+                    </svg>
+                    <h3>التسبيح</h3>
+                </div>
+
+                <div class="card purple" onclick="showSection('quran')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <h3>القرآن الكريم</h3>
+                </div>
+
+                <div class="card amber" onclick="showSection('bukhari')">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <h3>صحيح البخاري</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة أذكار الصباح والمساء -->
+        <div id="adhkar" class="section">
+            <div class="adhkar-section">
+                <div class="adhkar-header">
+                    <h2>أذكار الصباح والمساء</h2>
+                </div>
+
+                <div class="adhkar-tabs">
+                    <button class="adhkar-tab active" onclick="showAdhkarContent('sabah')">أذكار الصباح</button>
+                    <button class="adhkar-tab" onclick="showAdhkarContent('masa')">أذكار المساء</button>
+                </div>
+
+                <!-- أذكار الصباح -->
+                <div id="sabah" class="adhkar-content active">
+                    <div class="dhikr-item" id="sabah1">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">آية الكرسي</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah2">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">الإخلاص والمعوذتين</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ * لَمْ يَلِدْ وَلَمْ يُولَدْ * وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah2">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah2', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah2')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah3">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">دعاء الصباح</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ. رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَٰذَا الْيَوْمِ، وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَٰذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah4">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم بك أصبحنا</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah5">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم إني أصبحت أشهدك</span>
+                            <span class="dhikr-repeat">4 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah5">0</span> / 4
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah5', 4)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah5')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah6">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم عالم الغيب والشهادة</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ، فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَشَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَىٰ نَفْسِي سُوءًا، أَوْ أَجُرَّهُ إِلَىٰ مُسْلِمٍ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah7">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">يا حي يا قيوم برحمتك أستغيث</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَىٰ نَفْسِي طَرْفَةَ عَيْنٍ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah8">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم إني أسألك العافية</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي، وَعَنْ يَمِينِي وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah9">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">بسم الله الذي لا يضر مع اسمه شيء</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah9">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah9', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah9')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah10">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم عافني في بدني</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَٰهَ إِلَّا أَنْتَ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah10">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah10', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah10')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah11">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم إني أعوذ بك من الكفر والفقر</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ، وَالْفَقْرِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَٰهَ إِلَّا أَنْتَ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah11">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah11', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah11')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="dhikr-item" id="sabah13">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">لا إله إلا الله وحده لا شريك له</span>
+                            <span class="dhikr-repeat">مرة واحدة أو 100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ، وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah13">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah13', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah13')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="dhikr-item" id="sabah15">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">سبحان الله وبحمده</span>
+                            <span class="dhikr-repeat">100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah15">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah15', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah15')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah16">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">سبحان الله</span>
+                            <span class="dhikr-repeat">100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            سُبْحَانَ اللَّهِ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah16">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah16', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah16')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah17">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">الحمد لله</span>
+                            <span class="dhikr-repeat">100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            الْحَمْدُ لِلَّهِ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah17">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah17', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah17')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah18">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">الله أكبر</span>
+                            <span class="dhikr-repeat">100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُ أَكْبَرُ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah18">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah18', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah18')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah19">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">لا إله إلا الله وحده لا شريك له</span>
+                            <span class="dhikr-repeat">100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah19">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah19', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah19')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                     <div class="dhikr-item" id="sabah20">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">في الصباح خاصة</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah20">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah20', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah20')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                    <div class="dhikr-item" id="sabah21">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">أصبحنا على فطرة الإسلام</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            أَصْبَحْنَا عَلَىٰ فِطْرَةِ الْإِسْلَامِ، وَكَلِمَةِ الْإِخْلَاصِ، وَدِينِ نَبِيِّنَا مُحَمَّدٍ ﷺ، وَمِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah22">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">أستغفر الله</span>
+                            <span class="dhikr-repeat">100 مرة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            أَسْتَغْفِرُ اللَّهَ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah22">0</span> / 100
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah22', 100)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah22')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="sabah23">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">سبحان الله وبحمده عدد خلقه</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-sabah23">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('sabah23', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('sabah23')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- أذكار المساء -->
+                <div id="masa" class="adhkar-content">
+                    <div class="dhikr-item" id="masa1">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">آية الكرسي</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="masa2">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">الإخلاص والمعوذتين</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ * لَمْ يَلِدْ وَلَمْ يُولَدْ * وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-masa2">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('masa2', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('masa2')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="masa3">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">دعاء المساء</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ. رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَٰذِهِ اللَّيْلَةِ، وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَٰذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="masa4">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم بك أمسينا</span>
+                            <span class="dhikr-repeat">مرة واحدة</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="masa5">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">اللهم إني أمسيت أشهدك</span>
+                            <span class="dhikr-repeat">4 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-masa5">0</span> / 4
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('masa5', 4)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('masa5')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dhikr-item" id="masa6">
+                        <div class="dhikr-item-header">
+                            <span class="dhikr-title">أعوذ بكلمات الله التامات من شر ما خلق</span>
+                            <span class="dhikr-repeat">3 مرات</span>
+                        </div>
+                        <div class="dhikr-arabic">
+                            أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ
+                        </div>
+                        <div class="dhikr-counter-section">
+                            <div class="dhikr-counter-display">
+                                <span id="count-masa6">0</span> / 3
+                            </div>
+                            <div class="dhikr-buttons">
+                                <button class="dhikr-btn dhikr-btn-count" onclick="incrementDhikr('masa6', 3)">عدّ</button>
+                                <button class="dhikr-btn dhikr-btn-reset" onclick="resetDhikr('masa6')">إعادة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة الاستغفار -->
+        <div id="istighfar" class="section">
+            <div class="counter-section">
+                <h2 style="color: #10b981;">الاستغفار</h2>
+                <div class="counter-box">
+                    <div class="dhikr-text">
+                        <p>أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ الَّذِي لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ</p>
+                    </div>
+                    <div class="counter-display emerald" id="istighfarCount">0</div>
+                    <button class="btn btn-primary" onclick="increment('istighfar')">أستغفر الله</button>
+                    <button class="btn btn-secondary" onclick="reset('istighfar')">إعادة</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة التسبيح -->
+        <div id="tasbih" class="section">
+            <div class="counter-section">
+                <h2 style="color: #3b82f6;">التسبيح</h2>
+                <div class="counter-box">
+                    <div class="dhikr-text">
+                        <p>سُبْحَانَ اللَّهِ</p>
+                        <p>الْحَمْدُ لِلَّهِ</p>
+                        <p>اللَّهُ أَكْبَرُ</p>
+                    </div>
+                    <div class="counter-display blue" id="tasbihCount">0</div>
+                    <button class="btn btn-blue" onclick="increment('tasbih')">سبّح</button>
+                    <button class="btn btn-secondary" onclick="reset('tasbih')">إعادة</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة القرآن -->
+        <div id="quran" class="section">
+            <div class="content-section">
+                <h2 style="color: #a855f7;">القرآن الكريم</h2>
+                <div class="content-box">
+                    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                    <iframe src="https://quran.com/" title="القرآن الكريم"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحة البخاري -->
+        <div id="bukhari" class="section">
+            <div class="content-section">
+                <h2 style="color: #f59e0b;">صحيح البخاري</h2>
+                <div class="content-box">
+                    <iframe src="https://sunnah.com/bukhari" title="صحيح البخاري"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>وَاذْكُر رَّبَّكَ فِي نَفْسِكَ تَضَرُّعًا وَخِيفَةً</p>
+        <p class="small">جَعَلَهُ اللهُ فِي مِيزَانِ حَسَنَاتِكُمْ</p>
+    </footer>
+
+    <script>
+        // إدارة الأقسام
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // إدارة تبويبات الأذكار
+        function showAdhkarContent(contentId) {
+            document.querySelectorAll('.adhkar-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(contentId).classList.add('active');
+            
+            document.querySelectorAll('.adhkar-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // العدادات للاستغفار والتسبيح
+        let counters = {
+            istighfar: 0,
+            tasbih: 0
+        };
+
+        function increment(type) {
+            counters[type]++;
+            document.getElementById(type + 'Count').textContent = counters[type];
+        }
+
+        function reset(type) {
+            counters[type] = 0;
+            document.getElementById(type + 'Count').textContent = '0';
+        }
+
+        // عدادات الأذكار
+        let dhikrCounters = {};
+
+        function incrementDhikr(dhikrId, maxCount) {
+            if (!dhikrCounters[dhikrId]) {
+                dhikrCounters[dhikrId] = 0;
+            }
+            
+            if (dhikrCounters[dhikrId] < maxCount) {
+                dhikrCounters[dhikrId]++;
+                document.getElementById('count-' + dhikrId).textContent = dhikrCounters[dhikrId];
+                
+                if (dhikrCounters[dhikrId] === maxCount) {
+                    document.getElementById(dhikrId).classList.add('completed');
+                    document.querySelector('#' + dhikrId + ' .dhikr-repeat').style.display = 'none';
+                    let badge = document.createElement('span');
+                    badge.className = 'completed-badge';
+                    badge.textContent = 'مكتمل ✓';
+                    document.querySelector('#' + dhikrId + ' .dhikr-item-header').appendChild(badge);
+                }
+            }
+        }
+
+        function resetDhikr(dhikrId) {
+            dhikrCounters[dhikrId] = 0;
+            document.getElementById('count-' + dhikrId).textContent = '0';
+            document.getElementById(dhikrId).classList.remove('completed');
+            
+            let badge = document.querySelector('#' + dhikrId + ' .completed-badge');
+            if (badge) {
+                badge.remove();
+            }
+            document.querySelector('#' + dhikrId + ' .dhikr-repeat').style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>
